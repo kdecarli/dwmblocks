@@ -48,7 +48,6 @@ void getcmd(const Block *block, char *output, int blockI)
 	int i = strlen(block->icon);
 	fgets(output+i, CMDLENGTH-i, cmdf);
 	i = strlen(output);
-	printf("%d %d\n", LENGTH(blocks), blockI);
 	if (i && blockI+1 < LENGTH(blocks))
 	    for(int j = 0; delim[j] != 0; j++)
 		    output[i++] = delim[j];
