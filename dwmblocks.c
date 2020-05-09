@@ -48,8 +48,9 @@ void getcmd(const Block *block, char *output)
 	int i = strlen(block->icon);
 	fgets(output+i, CMDLENGTH-i, cmdf);
 	i = strlen(output);
-	if (delim != '\0' && --i)
-		output[i++] = delim;
+	if (--i)
+	    for(int j = 0; delim[j] != 0; j++)
+		    output[i++] = delim[j];
 	output[i++] = '\0';
 	pclose(cmdf);
 }
@@ -58,7 +59,7 @@ void getcmds(int time)
 {
 	const Block* current;
 	for(int i = 0; i < LENGTH(blocks); i++)
-	{	
+	{
 		current = blocks + i;
 		if ((current->interval != 0 && time % current->interval == 0) || time == -1)
 			getcmd(current,statusbar[i]);
@@ -80,7 +81,7 @@ void getsigcmds(int signal)
 void setupsignals()
 {
 	for(int i = 0; i < LENGTH(blocks); i++)
-	{	  
+	{
 		if (blocks[i].signal > 0)
 			signal(SIGRTMIN+blocks[i].signal, sighandler);
 	}
@@ -156,7 +157,7 @@ int main(int argc, char** argv)
 	for(int i = 0; i < argc; i++)
 	{	
 		if (!strcmp("-d",argv[i]))
-			delim = argv[++i][0];
+		    strcpy(delim, argv[++i]);
 		else if(!strcmp("-p",argv[i]))
 			writestatus = pstdout;
 	}
