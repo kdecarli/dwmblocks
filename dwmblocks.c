@@ -5,7 +5,8 @@
 #include<signal.h>
 #include<X11/Xlib.h>
 #define LENGTH(X)               (sizeof(X) / sizeof (X[0]))
-#define CMDLENGTH		300
+#define CMDLENGTH		150
+#define STATUSLENGTH (LENGTH(blocks) * (CMDLENGTH) + 1)
 
 typedef struct {
 	char* icon;
@@ -32,7 +33,7 @@ static Display *dpy;
 static int screen;
 static Window root;
 static char statusbar[LENGTH(blocks)][CMDLENGTH] = {0};
-static char statusstr[2][300];
+static char statusstr[2][STATUSLENGTH];
 static int statusContinue = 1;
 static void (*writestatus) () = setroot;
 
