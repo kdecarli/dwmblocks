@@ -2,7 +2,7 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/                 	            	/*Update Interval*/	/*Update Signal*/
 	{""                     , "cat /tmp/network",                       1,                  0},
-	{""                     , "utils/signal_strength.sh",               5,	            	0},
+	{""                     , "utils/signal_strength.sh",               30,	            	0},
 	{"^c#FF00FF^CPU:^d^ "   , "cat /tmp/cpu",                           1,                  0},
 	{""                     , "cat /tmp/top_process",                   2,                  0},
 //	{""                     , "utils/cpu_freq.sh",	                    1,                  0},
