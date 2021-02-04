@@ -13,4 +13,6 @@ static const Block blocks[] = {
 };
 
 //sets delimeter between status commands. empty string ("") means no delimeter.
-static char *delim = " | ";
+static char delim[] = " | ";
+static unsigned int delimLen = 5;
+
