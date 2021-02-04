@@ -56,7 +56,7 @@ static int statusContinue = 1;
 static int returnStatus = 0;
 
 //opens process *cmd and stores output in *output
-void getcmd(const Block *block, char *output, int blockI)
+void getcmd(const Block *block, char *output)
 {
 	strcpy(output, block->icon);
 	FILE *cmdf = popen(block->command, "r");
@@ -86,7 +86,7 @@ void getcmds(int time)
 	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
 		current = blocks + i;
 		if ((current->interval != 0 && time % current->interval == 0) || time == -1)
-			getcmd(current,statusbar[i], i);
+			getcmd(current,statusbar[i]);
 	}
 }
 
@@ -96,7 +96,7 @@ void getsigcmds(unsigned int signal)
 	for (unsigned int i = 0; i < LENGTH(blocks); i++) {
 		current = blocks + i;
 		if (current->signal == signal)
-			getcmd(current,statusbar[i], i);
+			getcmd(current,statusbar[i]);
 	}
 }
 
